@@ -1,0 +1,14 @@
+{
+    "name": "oxid-professional-services/lib-shop-switcher",
+    "description":"switch the current shop in a running process. - warning use with care see readme file",
+    "license":"GPL-3.0-only",
+    "autoload": {
+        "psr-4": {
+            "OxidProfessionalServices\\ShopSwitcher\\": "src/"
+        }
+    },
+    "require": {
+        "oxid-esales/oxideshop-ce": "^v6.0.0",
+        "php": "^7.1",
+    }
+}
