@@ -1,0 +1,19 @@
+name: php checks
+
+on: [push]
+
+jobs:
+  stand_alone_checks:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1   
+    - name: Validate composer.json
+      run: composer validate   
+    - name: validate php syntax
+      run: find . -not -path "./vendor/*" -name "*.php" -print0 | xargs -0 -n1 -P8 php -l
+    - name: validate bin php syntax
+      run: php -l bin/oxid
+    - name: install phpcs
+      run: curl -OL https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar
+    - name: phpcs psr12
+      run: php phpcs.phar --standard=PSR12 --extensions=php --ignore=vendor .
