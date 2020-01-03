@@ -1,4 +1,4 @@
-<%php
+<?php
 namespace OxidProfessionalServices\ShopSwitcher;
 
 class ShopSwitcher{
