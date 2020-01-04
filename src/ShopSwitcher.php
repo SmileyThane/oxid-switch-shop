@@ -2,9 +2,28 @@
 
 namespace OxidProfessionalServices\ShopSwitcher;
 
-class ShopSwitcher
+class ShopSwitcher implements IteratorAggregate
 {
-
+ 
+    private $shopList;
+   
+    public function __construct(){
+        /** @var \oxShopList $oxShopList */
+        $oxShopList = oxNew(\OxidEsales\Eshop\Application\Model\ShopList::class);
+        $shopList = $oxShopList->getAll();
+    }
+   
+    public function getIterator()
+    {
+        return (function () {
+            while(list($key, $val) = each($this->shopList)) {
+                $shopId = $val->oxshops__oxid->rawValue;
+                $this->switchToShopId($shopId);
+                yield $key => $shopId;
+            }
+        })();
+    }
+   
    /**
      * Completely switch shop
      *
