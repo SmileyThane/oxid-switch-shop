@@ -44,9 +44,11 @@ class ShopSwitcher
         if (($shopId != $shopIdCalculator->getShopId())
             || ($shopId != \OxidEsales\Eshop\Core\Registry::getConfig()->getShopId())
         ) {
-            throw new \Exception('Failed to switch to subshop id ' . $shopId . " Calculate ID: " 
+            throw new \Exception(
+                'Failed to switch to subshop id ' . $shopId . " Calculate ID: " 
                 . $shopIdCalculator->getShopId() . " Config ShopId: "
-                . \OxidEsales\Eshop\Core\Registry::getConfig()->getShopId());
+                . \OxidEsales\Eshop\Core\Registry::getConfig()->getShopId()
+            );
         }
     }
 }
