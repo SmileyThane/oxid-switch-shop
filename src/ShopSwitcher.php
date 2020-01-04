@@ -1,7 +1,9 @@
 <?php
+
 namespace OxidProfessionalServices\ShopSwitcher;
 
-class ShopSwitcher{
+class ShopSwitcher
+{
 
    /**
      * Completely switch shop
@@ -24,7 +26,7 @@ class ShopSwitcher{
             \OxidEsales\Eshop\Core\Registry::set($key, null);
         }
 
-        $utilsObject = new \OxidEsales\Eshop\Core\UtilsObject;
+        $utilsObject = new \OxidEsales\Eshop\Core\UtilsObject();
         $utilsObject->resetInstanceCache();
         \OxidEsales\Eshop\Core\Registry::set(\OxidEsales\Eshop\Core\UtilsObject::class, $utilsObject);
 
@@ -42,7 +44,9 @@ class ShopSwitcher{
         if (($shopId != $shopIdCalculator->getShopId())
             || ($shopId != \OxidEsales\Eshop\Core\Registry::getConfig()->getShopId())
         ) {
-            throw new \Exception('Failed to switch to subshop id ' . $shopId . " Calculate ID: " . $shopIdCalculator->getShopId() . " Config ShopId: " . \OxidEsales\Eshop\Core\Registry::getConfig()->getShopId());
+            throw new \Exception('Failed to switch to subshop id ' . $shopId . " Calculate ID: " 
+                . $shopIdCalculator->getShopId() . " Config ShopId: "
+                . \OxidEsales\Eshop\Core\Registry::getConfig()->getShopId());
         }
     }
 }
