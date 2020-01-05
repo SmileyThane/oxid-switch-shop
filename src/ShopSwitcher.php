@@ -7,7 +7,8 @@ class ShopSwitcher implements IteratorAggregate
  
     private $shopList;
    
-    public function __construct(){
+    public function __construct()
+    {
         /** @var \oxShopList $oxShopList */
         $oxShopList = oxNew(\OxidEsales\Eshop\Application\Model\ShopList::class);
         $shopList = $oxShopList->getAll();
@@ -16,7 +17,7 @@ class ShopSwitcher implements IteratorAggregate
     public function getIterator()
     {
         return (function () {
-            while(list($key, $val) = each($this->shopList)) {
+            while (list($key, $val) = each($this->shopList)) {
                 $shopId = $val->oxshops__oxid->rawValue;
                 $this->switchToShopId($shopId);
                 yield $key => $shopId;
@@ -60,11 +61,12 @@ class ShopSwitcher implements IteratorAggregate
         $moduleVariablesCache = new \OxidEsales\Eshop\Core\FileCache();
         $shopIdCalculator = new \OxidEsales\Eshop\Core\ShopIdCalculator($moduleVariablesCache);
 
-        if (($shopId != $shopIdCalculator->getShopId())
+        if (
+            ($shopId != $shopIdCalculator->getShopId())
             || ($shopId != \OxidEsales\Eshop\Core\Registry::getConfig()->getShopId())
         ) {
             throw new \Exception(
-                'Failed to switch to subshop id ' . $shopId . " Calculate ID: " 
+                'Failed to switch to subshop id ' . $shopId . " Calculate ID: "
                 . $shopIdCalculator->getShopId() . " Config ShopId: "
                 . \OxidEsales\Eshop\Core\Registry::getConfig()->getShopId()
             );
