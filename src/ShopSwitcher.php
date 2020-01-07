@@ -61,7 +61,7 @@ class ShopSwitcher implements IteratorAggregate
         Registry::set(Config::class, null);
         $config = Registry::getConfig();
 
-        if (method_exists($config, 'setConfig') {
+        if (method_exists($config, 'setConfig')) {
             $config->setConfig(null);
         }
         
