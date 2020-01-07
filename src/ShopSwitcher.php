@@ -11,9 +11,8 @@ class ShopSwitcher implements IteratorAggregate
    
     public function __construct()
     {
-        /** @var \oxShopList $oxShopList */
-        $oxShopList = oxNew(\OxidEsales\Eshop\Application\Model\ShopList::class);
-        $shopList = $oxShopList->getAll();
+        $shopList = oxNew(\OxidEsales\Eshop\Application\Model\ShopList::class);
+        $this->shopList = $shopList->getAll();
     }
    
     public function getIterator()
