@@ -2,6 +2,8 @@
 
 namespace OxidProfessionalServices\ShopSwitcher;
 
+use IteratorAggregate;
+
 class ShopSwitcher implements IteratorAggregate
 {
  
