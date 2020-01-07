@@ -3,6 +3,9 @@
 namespace OxidProfessionalServices\ShopSwitcher;
 
 use IteratorAggregate;
+use OxidEsales\Eshop\Core\Registry;
+use OxidEsales\Eshop\Core\Config;
+use OxidEsales\Eshop\Core\UtilsObject;
 
 class ShopSwitcher implements IteratorAggregate
 {
@@ -39,37 +42,42 @@ class ShopSwitcher implements IteratorAggregate
         $_GET['actshop'] = $shopId;
         
         $keepThese = [\OxidEsales\Eshop\Core\ConfigFile::class];
-        $registryKeys = \OxidEsales\Eshop\Core\Registry::getKeys();
+        $registryKeys = Registry::getKeys();
         foreach ($registryKeys as $key) {
             if (in_array($key, $keepThese)) {
                 continue;
             }
-            \OxidEsales\Eshop\Core\Registry::set($key, null);
+            Registry::set($key, null);
         }
 
-        $utilsObject = new \OxidEsales\Eshop\Core\UtilsObject();
+        $utilsObject = new UtilsObject();
         $utilsObject->resetInstanceCache();
-        \OxidEsales\Eshop\Core\Registry::set(\OxidEsales\Eshop\Core\UtilsObject::class, $utilsObject);
+        Registry::set(UtilsObject::class, $utilsObject);
 
         \OxidEsales\Eshop\Core\Module\ModuleVariablesLocator::resetModuleVariables();
-        \OxidEsales\Eshop\Core\Registry::getSession()->setVariable('shp', $shopId);
+        Registry::getSession()->setVariable('shp', $shopId);
 
         //ensure we get rid of all instances of config, even the one in Core\Base
-        \OxidEsales\Eshop\Core\Registry::set(\OxidEsales\Eshop\Core\Config::class, null);
-        \OxidEsales\Eshop\Core\Registry::getConfig()->setConfig(null);
-        \OxidEsales\Eshop\Core\Registry::set(\OxidEsales\Eshop\Core\Config::class, null);
+        Registry::set(Config::class, null);
+        $config = Registry::getConfig();
+
+        if (method_exists($config, 'setConfig') {
+            $config->setConfig(null);
+        }
+        
+        Registry::set(Config::class, null);
 
         $moduleVariablesCache = new \OxidEsales\Eshop\Core\FileCache();
         $shopIdCalculator = new \OxidEsales\Eshop\Core\ShopIdCalculator($moduleVariablesCache);
 
         if (
             ($shopId != $shopIdCalculator->getShopId())
-            || ($shopId != \OxidEsales\Eshop\Core\Registry::getConfig()->getShopId())
+            || ($shopId != Registry::getConfig()->getShopId())
         ) {
             throw new \Exception(
                 'Failed to switch to subshop id ' . $shopId . " Calculate ID: "
                 . $shopIdCalculator->getShopId() . " Config ShopId: "
-                . \OxidEsales\Eshop\Core\Registry::getConfig()->getShopId()
+                . Registry::getConfig()->getShopId()
             );
         }
     }
