@@ -53,7 +53,7 @@ jobs:
         MD=$(pwd)
         cd /var/www/oxideshop
         ./phpunit --version
-        ls -al
+        ls -al ${MD}/src/Tests
         ./phpunit -vvv --bootstrap staticBoot.php ${MD}/src/Tests/ShopSwitcherIteratorTest.php
         echo this will only shown if test run
     - name: logs
