@@ -1,7 +1,19 @@
 <?php
-
+declare(strict_types=1);
 namespace OxidProfessionalServices\ShopSwitcher\Tests;
 
-class ShopSwitcherIteratorTest {
+use OxidEsales\TestingLibrary\UnitTestCase;
 
+class ShopSwitcherIteratorTest extends UnitTestCase
+{
+    public function testIterate() {
+        $sut = new ShopSwitcher();
+        $count = 0;
+        foreach ($sut as $shopId) {
+            $count++;
+            $this->assertEquals(1, $shopId);
+        }
+        $this->assertEquals(1, $count);
+    }
+    
 }
