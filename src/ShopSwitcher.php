@@ -15,9 +15,9 @@ use OxidEsales\Eshop\Application\Model\Shop;
 class ShopSwitcher implements IteratorAggregate
 {
     /**
-     * @var array<Shop> $shopList
+     * @var array<string> $shopList
      **/
-    private $shopList = [1];
+    private $shopList = ['1'];
    
     public function __construct()
     {
@@ -32,7 +32,7 @@ class ShopSwitcher implements IteratorAggregate
     }
    
     /**
-     * @return \Traversable<Shop>
+     * @return \Traversable<string>
      **/
     public function getIterator()
     {
