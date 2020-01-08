@@ -11,7 +11,7 @@ use OxidEsales\Eshop\Core\UtilsObject;
 use OxidEsales\Eshop\Application\Model\ShopList;
 use OxidEsales\Eshop\Application\Model\Shop;
 
-/** @implements IteratorAggregate<int, Shop> */
+/** @implements IteratorAggregate<string> */
 class ShopSwitcher implements IteratorAggregate
 {
     /**
