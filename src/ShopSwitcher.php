@@ -26,7 +26,7 @@ class ShopSwitcher implements IteratorAggregate
         if (! is_array($fullShopList)) {
             $this->shopList = ['1'];
             //for what reason will the shoplist not be a array?
-            vardump($fullShopList);
+            var_debugdump($fullShopList);
             return;
         }
         $this->shopList = array_map(
