@@ -48,12 +48,27 @@ jobs:
         cd /var/www/oxideshop
         curl -OL https://circleci.com/api/v1.1/project/github/weirdan/psalm/232/artifacts/0/home/docker/project/build/psalm.phar
         php psalm.phar --stats --show-info=true $MD
+    - name: debug phpunit class not found
+      continue-on-error: true
+      run: |
+        MD=$(pwd)
+        cd /var/www/oxideshop
+        composer show phpunit/phpunit
     - name: test
       continue-on-error: true
       run: |
         MD=$(pwd)
         cd /var/www/oxideshop
         ./phpunit --version
+        ls -al ${MD}/src/Tests
+        ./phpunit -vvv --bootstrap staticBoot.php ${MD}/src/Tests/ShopSwitcherIteratorTest.php
+        echo this will only shown if test run
+    - name: test
+      continue-on-error: true
+      run: |
+        MD=$(pwd)
+        cd /var/www/oxideshop
+        vendor/bin/phpunit --version
         ls -al ${MD}/src/Tests
         ./phpunit -vvv --bootstrap staticBoot.php ${MD}/src/Tests/ShopSwitcherIteratorTest.php
         echo this will only shown if test run
