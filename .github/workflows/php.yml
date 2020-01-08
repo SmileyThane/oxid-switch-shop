@@ -52,6 +52,7 @@ jobs:
       run: |
         MD=$(pwd)
         cd /var/www/oxideshop
+        sed -i -e "s@partial_module_paths:@partial_module_paths: ${MD}@g" test_config.yml
         vendor/bin/runtests
 
    
