@@ -78,10 +78,12 @@ jobs:
         vendor/bin/runtests --version
         vendor/bin/runtests -vvv ${MD}/src/Tests/ShopSwitcherIteratorTest.php
         echo this will only shown if test run
-    - run: mysql -u root -proot -e "SELECT `oxshops`.* FROM `oxshops`" oxid
+    - run: mysql -u root -proot -e "SELECT * FROM oxshops" oxid
       continue-on-error: true
     - name: logs
-      run: ls /var/www/oxideshop/source/logs
-    - run: cat /var/www/oxideshop/source/logs/*
+      run: |
+        ls /var/www/oxideshop/source/log
+        cat /var/www/oxideshop/source/log/*
+      continue-on-error: true
 
    
