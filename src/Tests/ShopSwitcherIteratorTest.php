@@ -17,5 +17,5 @@ class ShopSwitcherIteratorTest extends TestCase
             $this->assertEquals(1, $shopId);
         }
         $this->assertEquals(1, $count);
-    }   
+    }
 }
