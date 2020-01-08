@@ -52,7 +52,14 @@ jobs:
       run: |
         MD=$(pwd)
         cd /var/www/oxideshop
+        echo setting up test path
         sed -i -e "s@partial_module_paths:@partial_module_paths: ${MD}@g" test_config.yml
+        cat test_config.yml
+        echo starting tests
         vendor/bin/runtests
+        echo this will only shown if test run
+    - name: logs
+      if: !success();
+      run: ls /var/www/oxideshop/source/logs
 
    
