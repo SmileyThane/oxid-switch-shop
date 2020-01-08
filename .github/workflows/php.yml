@@ -32,14 +32,13 @@ jobs:
       run: bash /var/www/oxideshop/scripts/setupOxid.sh
     - name: install this package into oxid
       run: bash /var/www/oxideshop/scripts/setupPackage.sh
-    - name: phpstan loose
-      continue-on-error: true
+    - name: phpstan
       run: |
         MD=$(pwd)
         cd /var/www/oxideshop
         touch autoload.oxid.php
-        composer remove phpstan/phpstan-strict-rules --dev
-        vendor/bin/phpstan analys  --level 2 --configuration phpstan.neon $MD
+        cp $MD/phpstan-baseline.neon .
+        vendor/bin/phpstan analys --configuration phpstan.neon $MD
     - name: psalm
       run: |
         MD=$(pwd)

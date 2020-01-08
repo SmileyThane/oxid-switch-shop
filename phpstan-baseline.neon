@@ -1,0 +1,11 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Method OxidProfessionalServices\\\\ShopSwitcher\\\\ShopSwitcher\\:\\:getIterator\\(\\) should return Traversable\\<int, OxidEsales\\\\Eshop\\\\Application\\\\Model\\\\Shop\\> but returns mixed\\.$#"
+			count: 1
+			path: /__w/switch-shop/switch-shop/src/ShopSwitcher.php
+
+		-
+			message: "#^Unable to resolve the template type T in call to method static method OxidEsales\\\\EshopCommunity\\\\Core\\\\Registry\\:\\:set\\(\\)$#"
+			count: 1
+			path: /__w/switch-shop/switch-shop/src/ShopSwitcher.php
