@@ -24,10 +24,10 @@ class ShopSwitcher implements IteratorAggregate
         $shopListService = oxNew(ShopList::class);
         $fullShopList = $shopListService->getAll();
         $this->shopList = array_map(
-            $fullShopList,
             function ($shop) {
                 return $shop->getId();
-            }
+            },
+            $fullShopList
         );
     }
    
