@@ -17,12 +17,18 @@ class ShopSwitcher implements IteratorAggregate
     /**
      * @var array<string> $shopList
      **/
-    private $shopList = ['1'];
+    private $shopList;
    
     public function __construct()
     {
         $shopListService = oxNew(ShopList::class);
         $fullShopList = $shopListService->getAll();
+        if (! is_array($fullShopList)) {
+            $this->shopList = ['1'];
+            //for what reason will the shoplist not be a array?
+            vardump($fullShopList);
+            return;
+        }
         $this->shopList = array_map(
             function ($shop) {
                 return $shop->getId();
