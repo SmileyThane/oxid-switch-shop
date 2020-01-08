@@ -11,12 +11,6 @@ class ShopSwitcherIteratorTest extends TestCase
 {
     public function testIterate(): void
     {
-        //bootstrap code that is somehow missing
-        $cf = new \OxidEsales\Eshop\Core\ConfigFile('/var/www/oxideshop/source/config.inc.php');
-        \OxidEsales\Eshop\Core\Registry::set(\OxidEsales\Eshop\Core\ConfigFile::class, $cf);
-        //end of bootstrap code
-        
-        
         $sut = new ShopSwitcher();
         $count = 0;
         foreach ($sut as $shopId) {
