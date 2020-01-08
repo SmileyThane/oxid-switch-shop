@@ -41,6 +41,7 @@ jobs:
         touch autoload.oxid.php
         cp $MD/phpstan-baseline.neon .
         vendor/bin/phpstan analys --configuration phpstan.neon $MD
+      continue-on-error: true
     - name: psalm
       run: |
         MD=$(pwd)
