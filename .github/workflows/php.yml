@@ -40,13 +40,13 @@ jobs:
         cd /var/www/oxideshop
         touch autoload.oxid.php
         cp $MD/phpstan-baseline.neon .
-        vendor/bin/phpstan analys --error-format=vaseline --configuration phpstan.neon $MD
+        vendor/bin/phpstan analys --configuration phpstan.neon $MD
     - name: phpstan baseline
       if: failure()
       run: |
         MD=$(pwd)
         cd /var/www/oxideshop
-        vendor/bin/phpstan analys --error-format=baseline --configuration phpstan.neon $MD
+        vendor/bin/phpstan analys --error-format=baselineNeon --configuration phpstan.neon $MD
       continue-on-error: true
     - name: psalm
       run: |
