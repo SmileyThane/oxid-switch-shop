@@ -59,7 +59,7 @@ jobs:
         vendor/bin/runtests
         echo this will only shown if test run
     - name: logs
-      if: !success();
+      if: failure();
       run: ls /var/www/oxideshop/source/logs
 
    
