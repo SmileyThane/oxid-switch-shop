@@ -2,9 +2,9 @@
 declare(strict_types=1);
 namespace OxidProfessionalServices\ShopSwitcher\Tests;
 
-use OxidEsales\TestingLibrary\UnitTestCase;
+use PHPUnit\Framework\TestCase;
 
-class ShopSwitcherIteratorTest extends UnitTestCase
+class ShopSwitcherIteratorTest extends TestCase
 {
     public function testIterate() {
         $sut = new ShopSwitcher();
