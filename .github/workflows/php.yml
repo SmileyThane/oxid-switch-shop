@@ -54,23 +54,29 @@ jobs:
         MD=$(pwd)
         cd /var/www/oxideshop
         composer show phpunit/phpunit
-    - name: test
+    - name: test with phpunit 8
       continue-on-error: true
       run: |
         MD=$(pwd)
         cd /var/www/oxideshop
         ./phpunit --version
-        ls -al ${MD}/src/Tests
         ./phpunit -vvv --bootstrap staticBoot.php ${MD}/src/Tests/ShopSwitcherIteratorTest.php
         echo this will only shown if test run
-    - name: test
+    - name: test with buildin phpunit
       continue-on-error: true
       run: |
         MD=$(pwd)
         cd /var/www/oxideshop
         vendor/bin/phpunit --version
-        ls -al ${MD}/src/Tests
         ./phpunit -vvv --bootstrap staticBoot.php ${MD}/src/Tests/ShopSwitcherIteratorTest.php
+        echo this will only shown if test run
+    - name: test with testing framework
+      continue-on-error: true
+      run: |
+        MD=$(pwd)
+        cd /var/www/oxideshop
+        vendor/bin/runtests --version
+        vendor/bin/runtests -vvv ${MD}/src/Tests/ShopSwitcherIteratorTest.php
         echo this will only shown if test run
     - name: logs
       if: failure()
