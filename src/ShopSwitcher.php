@@ -35,12 +35,12 @@ class ShopSwitcher implements IteratorAggregate
      * @return \Traversable<string>
      **/
     public function getIterator()
-    {      
+    {
         $shopList = $this->shopList;
         foreach ($shopList as $shopId) {
             $this->switchToShopId($shopId);
             yield $shopId;
-        }     
+        }
     }
    
    /**
