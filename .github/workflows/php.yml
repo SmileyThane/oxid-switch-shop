@@ -60,7 +60,7 @@ jobs:
         MD=$(pwd)
         cd /var/www/oxideshop
         ./phpunit --version
-        ./phpunit -vvv --bootstrap staticBoot.php ${MD}/src/Tests/ShopSwitcherIteratorTest.php
+        ./phpunit -vvv --bootstrap source/bootstrap.php ${MD}/src/Tests/ShopSwitcherIteratorTest.php
         echo this will only shown if test run
     - name: test with buildin phpunit
       continue-on-error: true
@@ -68,7 +68,7 @@ jobs:
         MD=$(pwd)
         cd /var/www/oxideshop
         vendor/bin/phpunit --version
-        vendor/bin/phpunit -vvv --bootstrap staticBoot.php ${MD}/src/Tests/ShopSwitcherIteratorTest.php
+        vendor/bin/phpunit -vvv --bootstrap source/bootstrap.php ${MD}/src/Tests/ShopSwitcherIteratorTest.php
         echo this will only shown if test run
     - name: test with testing framework
       continue-on-error: true
