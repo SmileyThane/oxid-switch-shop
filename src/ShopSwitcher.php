@@ -26,7 +26,7 @@ class ShopSwitcher implements IteratorAggregate
         $this->shopList = [];
         foreach($shopListService as $shop) {
             $this->shopList[] = $shop->getId();
-        );
+        }
     }
    
     /**
