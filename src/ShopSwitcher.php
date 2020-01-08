@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types=1);
 namespace OxidProfessionalServices\ShopSwitcher;
 
 use IteratorAggregate;
