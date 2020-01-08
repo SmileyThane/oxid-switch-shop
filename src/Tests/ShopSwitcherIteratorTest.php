@@ -9,7 +9,7 @@ use OxidProfessionalServices\ShopSwitcher\ShopSwitcher;
 
 class ShopSwitcherIteratorTest extends TestCase
 {
-    public function testIterate()
+    public function testIterate(): void
     {
         $sut = new ShopSwitcher();
         $count = 0;
