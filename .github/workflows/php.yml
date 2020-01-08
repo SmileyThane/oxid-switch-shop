@@ -61,10 +61,10 @@ jobs:
         curl -OL https://circleci.com/api/v1.1/project/github/weirdan/psalm/232/artifacts/0/home/docker/project/build/psalm.phar
         php psalm.phar --stats --show-info=true $MD
     - name: test with stand alone phpunit
-      continue-on-error: true
       run: |
         MD=$(pwd)
         cd /var/www/oxideshop
+        ls -al
         ./phpunit --version
         ./phpunit -vvv --bootstrap source/bootstrap.php ${MD}/src/Tests/ShopSwitcherIteratorTest.php
 #    - name: test with builtin phpunit - fails in oxid 6.1
