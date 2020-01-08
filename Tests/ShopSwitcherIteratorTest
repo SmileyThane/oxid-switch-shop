@@ -1,0 +1,7 @@
+<?php
+
+namespace OxidProfessionalServices\ShopSwitcher\Tests;
+
+class ShopSwitcherIteratorTest {
+
+}
