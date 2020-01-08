@@ -10,5 +10,8 @@
     "require": {
         "oxid-esales/oxideshop-ce": "^v6.0.0",
         "php": "^7.1"
+    },
+    "require-dev" {
+        "phpunit/phpunit" : "*"
     }
 }
