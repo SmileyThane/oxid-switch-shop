@@ -1,12 +1,15 @@
 <?php
+
 declare(strict_types=1);
+
 namespace OxidProfessionalServices\ShopSwitcher\Tests;
 
 use PHPUnit\Framework\TestCase;
 
 class ShopSwitcherIteratorTest extends TestCase
 {
-    public function testIterate() {
+    public function testIterate()
+    {
         $sut = new ShopSwitcher();
         $count = 0;
         foreach ($sut as $shopId) {
