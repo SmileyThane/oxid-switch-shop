@@ -36,9 +36,9 @@ class ShopSwitcher implements IteratorAggregate
      **/
     public function getIterator()
     {
-        $shopList = $this->shopList;       
+        $shopList = $this->shopList;
         return (
-            function () {         
+            function () {
                 foreach ($shopList as $shopId) {
                     $this->switchToShopId($shopId);
                     yield $shopId;
