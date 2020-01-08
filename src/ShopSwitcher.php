@@ -27,7 +27,8 @@ class ShopSwitcher implements IteratorAggregate
             $fullShopList,
             function($shop) {
                 return $shop->getId();
-            });
+            }
+        );
     }
    
     /**
