@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace OxidProfessionalServices\ShopSwitcher;
 
 use IteratorAggregate;
@@ -34,12 +36,14 @@ class ShopSwitcher implements IteratorAggregate
     public function getIterator()
     {
         $shopList = $this->shopList;       
-        return (function () {         
-            foreach ($shopList as $shopId) {
-                $this->switchToShopId($shopId);
-                yield $key => $shopId;
+        return (
+            function () {         
+                foreach ($shopList as $shopId) {
+                    $this->switchToShopId($shopId);
+                    yield $key => $shopId;
+                }
             }
-        })();
+        )();
     }
    
    /**
