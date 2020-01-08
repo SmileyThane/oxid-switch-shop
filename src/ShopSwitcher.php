@@ -25,7 +25,7 @@ class ShopSwitcher implements IteratorAggregate
         $fullShopList = $shopListService->getAll();
         $this->shopList = array_map(
             $fullShopList,
-            function($shop) {
+            function ($shop) {
                 return $shop->getId();
             }
         );
