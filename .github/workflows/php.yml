@@ -45,4 +45,11 @@ jobs:
         cd /var/www/oxideshop
         curl -OL https://circleci.com/api/v1.1/project/github/weirdan/psalm/232/artifacts/0/home/docker/project/build/psalm.phar
         php psalm.phar --stats --show-info=true $MD
+    - name: test
+      continue-on-error: true
+      run: |
+        MD=$(pwd)
+        cd /var/www/oxideshop
+        vendor/bin/runtests
+
    
