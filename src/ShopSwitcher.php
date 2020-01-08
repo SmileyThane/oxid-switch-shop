@@ -13,24 +13,29 @@ use OxidEsales\Eshop\Application\Model\Shop;
 class ShopSwitcher implements IteratorAggregate
 {
     /**
-     * @var array<int, Shop> $shopList
+     * @var array<Shop> $shopList
      **/
-    private $shopList;
+    private $shopList = [1];
    
     public function __construct()
     {
-        $shopList = oxNew(ShopList::class);
-        $this->shopList = $shopList->getAll();
+        $shopListService = oxNew(ShopList::class);
+        $fullShopList = $shopListService->getAll();
+        $this->shopList = array_map(
+            $fullShopList,
+            function($shop) {
+                return $shop->getId();
+            });
     }
    
     /**
-     * @return \Traversable<int, Shop>
+     * @return \Traversable<Shop>
      **/
     public function getIterator()
     {
-        return (function () {
-            foreach ($this->shopList as $key => $shop) {
-                $shopId = $shop->getId();
+        $shopList = $this->shopList;       
+        return (function () {         
+            foreach ($shopList as $shopId) {
                 $this->switchToShopId($shopId);
                 yield $key => $shopId;
             }
