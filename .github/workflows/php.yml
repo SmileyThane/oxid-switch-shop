@@ -40,7 +40,13 @@ jobs:
         cd /var/www/oxideshop
         touch autoload.oxid.php
         cp $MD/phpstan-baseline.neon .
-        vendor/bin/phpstan analys --configuration phpstan.neon $MD
+        vendor/bin/phpstan analys --error-format=vaseline --configuration phpstan.neon $MD
+    - name: phpstan baseline
+      if: failure()
+      run: |
+        MD=$(pwd)
+        cd /var/www/oxideshop
+        vendor/bin/phpstan analys --error-format=baseline --configuration phpstan.neon $MD
       continue-on-error: true
     - name: psalm
       run: |
@@ -48,38 +54,27 @@ jobs:
         cd /var/www/oxideshop
         curl -OL https://circleci.com/api/v1.1/project/github/weirdan/psalm/232/artifacts/0/home/docker/project/build/psalm.phar
         php psalm.phar --stats --show-info=true $MD
-    - name: debug phpunit class not found
-      continue-on-error: true
-      run: |
-        MD=$(pwd)
-        cd /var/www/oxideshop
-        composer show phpunit/phpunit
-    - name: test with phpunit 8
+    - name: test with stand alone phpunit
       continue-on-error: true
       run: |
         MD=$(pwd)
         cd /var/www/oxideshop
         ./phpunit --version
         ./phpunit -vvv --bootstrap source/bootstrap.php ${MD}/src/Tests/ShopSwitcherIteratorTest.php
-        echo this will only shown if test run
-    - name: test with buildin phpunit
-      continue-on-error: true
-      run: |
-        MD=$(pwd)
-        cd /var/www/oxideshop
-        vendor/bin/phpunit --version
-        vendor/bin/phpunit -vvv --bootstrap source/bootstrap.php ${MD}/src/Tests/ShopSwitcherIteratorTest.php
-        echo this will only shown if test run
-    - name: test with testing framework
-      continue-on-error: true
-      run: |
-        MD=$(pwd)
-        cd /var/www/oxideshop
-        vendor/bin/runtests --version
-        vendor/bin/runtests -vvv ${MD}/src/Tests/ShopSwitcherIteratorTest.php
-        echo this will only shown if test run
-    - run: mysql -u root -proot -e "SELECT * FROM oxshops" oxid
-      continue-on-error: true
+#    - name: test with builtin phpunit - fails in oxid 6.1
+#      continue-on-error: true
+#      run: |
+#        MD=$(pwd)
+#        cd /var/www/oxideshop
+#        vendor/bin/phpunit --version
+#        vendor/bin/phpunit -vvv --bootstrap source/bootstrap.php ${MD}/src/Tests/ShopSwitcherIteratorTest.php
+ #   - name: test with testing framework - fails in oxid 6.1
+ #     continue-on-error: true
+ #     run: |
+ #       MD=$(pwd)
+ #       cd /var/www/oxideshop
+ #       vendor/bin/runtests --version
+ #       vendor/bin/runtests -vvv ${MD}/src/Tests/ShopSwitcherIteratorTest.php
     - name: logs
       run: |
         ls /var/www/oxideshop/source/log
