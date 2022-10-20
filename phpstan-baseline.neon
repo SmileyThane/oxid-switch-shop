@@ -1,6 +1,0 @@
-parameters:
-	ignoreErrors:
-		-
-			message: "#^Unable to resolve the template type T in call to method static method OxidEsales\\\\EshopCommunity\\\\Core\\\\Registry\\:\\:set\\(\\)$#"
-			count: 1
-			path: /__w/switch-shop/switch-shop/src/ShopSwitcher.php
