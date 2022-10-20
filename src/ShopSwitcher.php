@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace OxidProfessionalServices\ShopSwitcher;
+namespace SmileyThane\ShopSwitcher;
 
 use IteratorAggregate;
 use OxidEsales\Eshop\Core\Registry;

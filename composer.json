@@ -1,10 +1,10 @@
 {
-    "name": "oxid-professional-services/lib-shop-switcher",
+    "name": "smileythane/lib-shop-switcher",
     "description":"switch the current shop in a running process. - warning use with care see readme file",
     "license":"GPL-3.0-only",
     "autoload": {
         "psr-4": {
-            "OxidProfessionalServices\\ShopSwitcher\\": "src/"
+            "SmileyThane\\ShopSwitcher\\": "src/"
         }
     },
     "require": {

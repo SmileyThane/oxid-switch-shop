@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace OxidProfessionalServices\ShopSwitcher\Tests;
+namespace SmileyThane\ShopSwitcher\Tests;
 
 use PHPUnit\Framework\TestCase;
-use OxidProfessionalServices\ShopSwitcher\ShopSwitcher;
+use SmileyThane\ShopSwitcher\ShopSwitcher;
 
 class ShopSwitcherIteratorTest extends TestCase
 {
